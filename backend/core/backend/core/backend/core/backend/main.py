@@ -1,3 +1,4 @@
+from core.time_engine import TimeRecoveryEngine 
 from core.director import AethraDirector
 from core.memory import AethraMemory
 from core.planner import AethraPlanner
@@ -6,6 +7,7 @@ from core.planner import AethraPlanner
 class AethraCore:
 
     def __init__(self):
+        self.time_engine = TimeRecoveryEngine()
         self.director = AethraDirector()
         self.memory = AethraMemory()
         self.planner = AethraPlanner()
@@ -28,7 +30,10 @@ class AethraCore:
         plan = self.planner.create_plan(
             goal
         )
-
+        time_result = self.time_engine.calculate_saved_time(
+    300,
+    45
+        )
         return {
             "analysis": analysis,
             "plan": plan,
